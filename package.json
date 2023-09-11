@@ -1,8 +1,8 @@
 {
-  "name": "base-react-ts",
+  "name": "excel-timelog-generator",
   "private": true,
   "version": "0.1.0",
-  "description": "React base project with TypeScript + Vite for the rapid creation of frontend project with certain functionalities already created and programming patterns already defined.",
+  "description": "Application to export timelogs from CSV files and export them to Excel files with the official format.",
   "type": "module",
   "keywords": [
     "atomic design",
@@ -24,7 +24,6 @@
     "email": "luisfer.sm15@gmail.com",
     "url": "https://github.com/XxLuisFer15xX"
   },
-  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
