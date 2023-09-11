@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,31 +5,39 @@ import {
   Navigate,
 } from 'react-router-dom'
 
-// Hooks
-import { AuthContext } from '@hooks/contexts'
-
 // Components
-import { Login, Error404 } from '@pages'
-import { DashboardRouter, PrivateRoute, PublicRoute } from '@routes'
+import {
+  ComponentsAlert,
+  ComponentsButton,
+  ComponentsDialog,
+  ComponentsInputs1,
+  ComponentsInputs2,
+  ComponentsInputs3,
+  ComponentsInputs4,
+  ComponentsLoader,
+  ComponentsTable,
+  ComponentsText,
+  Home,
+} from '@pages'
+import { Error404 } from '@pages'
 
 const AppRouter = () => {
-  const { auth } = useContext(AuthContext)
-
   return (
     <Router>
       <Routes>
-        <Route
-          path="/login"
-          element={<PublicRoute element={Login} isAuth={auth.isLogin} />}
-        />
-        <Route
-          path="/dashboard/*"
-          element={
-            <PrivateRoute element={DashboardRouter} isAuth={auth.isLogin} />
-          }
-        />
+        <Route path="/home" element={<Home />} />
+        <Route path="/componentsAlert" element={<ComponentsAlert />} />
+        <Route path="/componentsButton" element={<ComponentsButton />} />
+        <Route path="/componentsDialog" element={<ComponentsDialog />} />
+        <Route path="/componentsInputs1" element={<ComponentsInputs1 />} />
+        <Route path="/componentsInputs2" element={<ComponentsInputs2 />} />
+        <Route path="/componentsInputs3" element={<ComponentsInputs3 />} />
+        <Route path="/componentsInputs4" element={<ComponentsInputs4 />} />
+        <Route path="/componentsLoader" element={<ComponentsLoader />} />
+        <Route path="/componentsTable" element={<ComponentsTable />} />
+        <Route path="/componentsText" element={<ComponentsText />} />
         <Route path="/page-error" element={<Error404 />} />
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="*" element={<Navigate to="/page-error" replace />} />
       </Routes>
     </Router>
