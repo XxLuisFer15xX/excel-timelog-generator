@@ -1,3 +1,3 @@
-export { getLegalDate } from './dates'
-export { renderColor } from './renders'
-export { getPagination } from './pagination'
+export * from './dates'
+export * from './renders'
+export * from './pagination'

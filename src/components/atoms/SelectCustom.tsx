@@ -8,7 +8,7 @@ import { FormControlCustom, MenuItemCustom, TextCustom } from '@atoms'
 // Core
 import { colors } from '@styles'
 
-const SelectCustom = ({
+const Component = ({
   name = '',
   options = [],
   value = '',
@@ -72,4 +72,4 @@ const SelectCustom = ({
   )
 }
 
-export default memo(SelectCustom)
+export const SelectCustom = memo(Component)

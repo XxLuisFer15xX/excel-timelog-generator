@@ -28,7 +28,7 @@ export type TableInstanceWithHooks<T extends object> = TableInstance<T> &
     state: UsePaginationState<T> & UseGlobalFiltersState<T>
   }
 
-const TableCustom = <T extends object>({
+const Component = <T extends object>({
   columns = [],
   data = [],
   isSearch = false,
@@ -136,4 +136,4 @@ const TableCustom = <T extends object>({
   )
 }
 
-export default memo(TableCustom)
+export const TableCustom = memo(Component)

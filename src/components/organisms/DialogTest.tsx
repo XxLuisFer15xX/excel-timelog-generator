@@ -22,10 +22,7 @@ import { getLegalDate } from '@core/utils'
 // Const
 import { constEstadosCiviles, constGeneros } from '@common/constants'
 
-const DialogTest = ({
-  open = false,
-  setOpen = () => null,
-}: DialogTestProps) => {
+const Component = ({ open = false, setOpen = () => null }: DialogTestProps) => {
   const [nombres, setNombres] = useState('')
   const [apellidos, setApellidos] = useState('')
   const [correo, setCorreo] = useState('')
@@ -163,4 +160,4 @@ const DialogTest = ({
   )
 }
 
-export default memo(DialogTest)
+export const DialogTest = memo(Component)

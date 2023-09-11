@@ -6,7 +6,7 @@ import { IconButton } from '@mui/material'
 // Core
 import { renderColor } from '@core/utils'
 
-const IconButtonCustom = ({
+export const IconButtonCustom = ({
   onClick = () => null,
   size = 32,
   className = '',
@@ -45,5 +45,3 @@ const IconButtonCustom = ({
     </IconButton>
   )
 }
-
-export default IconButtonCustom

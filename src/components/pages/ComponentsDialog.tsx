@@ -11,7 +11,7 @@ import {
 import { DialogTest } from '@organisms'
 import { DialogCustom } from '@templates'
 
-const ComponentsDialog = () => {
+export const ComponentsDialog = () => {
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
   const [show3, setShow3] = useState(false)
@@ -255,5 +255,3 @@ const ComponentsDialog = () => {
     </div>
   )
 }
-
-export default ComponentsDialog

@@ -1,5 +1,1 @@
-export {
-  constGeneros,
-  constTiposIdentidad,
-  constEstadosCiviles,
-} from './fakeData'
+export * from './fakeData'

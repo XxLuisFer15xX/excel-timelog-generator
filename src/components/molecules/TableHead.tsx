@@ -6,7 +6,7 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { ReactComponent as SortIcon } from '@assets/icons/tables/SortIcon.svg'
 
-const TableHead = <T extends object>({
+export const TableHead = <T extends object>({
   actionColumnTitle = '',
   headerGroup = {} as HeaderGroup<T>,
   isActions = false,
@@ -42,5 +42,3 @@ const TableHead = <T extends object>({
     </thead>
   )
 }
-
-export default TableHead

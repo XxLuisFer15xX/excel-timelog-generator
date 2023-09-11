@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Divider } from '@mui/material'
 import { AlertCustom, ButtonCustom, TextCustom } from '@atoms'
 
-const ComponentsAlert = () => {
+export const ComponentsAlert = () => {
   const [alertInfo, setAlertInfo] = useState(true)
   const [alertSuccess, setAlertSuccess] = useState(true)
   const [alertWarning, setAlertWarning] = useState(true)
@@ -65,5 +65,3 @@ const ComponentsAlert = () => {
     </div>
   )
 }
-
-export default ComponentsAlert

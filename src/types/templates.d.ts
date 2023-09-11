@@ -1,10 +1,6 @@
 import { TypeTableAction } from '@types'
 import { Column } from 'react-table'
 
-export interface DashboardLayoutProps {
-  children?: React.ReactNode
-}
-
 export interface DialogCustomProps {
   children: React.ReactNode
   disabledDismiss?: boolean

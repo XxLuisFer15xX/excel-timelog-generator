@@ -6,7 +6,7 @@ import { Switch } from '@mui/material'
 // Core
 import { renderColor } from '@core/utils'
 
-const SwitchCustom = ({
+export const SwitchCustom = ({
   value = false,
   setValue = () => null,
   disabled = false,
@@ -36,5 +36,3 @@ const SwitchCustom = ({
     />
   )
 }
-
-export default SwitchCustom

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const useMessage = <T>(messageState: T) => {
+export const useMessage = <T>(messageState: T) => {
   const [messages, setMessages] = useState(messageState)
 
   const resetMessages = () => {
@@ -13,5 +13,3 @@ const useMessage = <T>(messageState: T) => {
     resetMessages,
   }
 }
-
-export default useMessage

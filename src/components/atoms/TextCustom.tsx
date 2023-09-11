@@ -3,7 +3,7 @@ import { TextCustomProps } from '@types'
 // Components
 import { Typography } from '@mui/material'
 
-const TextCustom = ({
+export const TextCustom = ({
   text = '',
   isParagraph = false,
   variant = 'inherit',
@@ -21,5 +21,3 @@ const TextCustom = ({
     </Typography>
   )
 }
-
-export default TextCustom

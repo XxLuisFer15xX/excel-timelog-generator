@@ -11,7 +11,7 @@ import { TableCustom } from '@templates'
 import users from '@common/data/users.json'
 import usersMin from '@common/data/users-min.json'
 
-const ComponentsTable = () => {
+export const ComponentsTable = () => {
   const tableBasic1 = useMemo(
     () =>
       ({
@@ -196,5 +196,3 @@ const ComponentsTable = () => {
     </div>
   )
 }
-
-export default ComponentsTable

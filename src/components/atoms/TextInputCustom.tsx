@@ -11,7 +11,7 @@ import { validTextInput, validInputInitialNumbers } from '@core/validations'
 // Styles
 import { colors } from '@styles'
 
-const TextInputCustom = ({
+const Component = ({
   name = '',
   value = '',
   setValue = () => null,
@@ -133,4 +133,4 @@ const TextInputCustom = ({
   )
 }
 
-export default memo(TextInputCustom)
+export const TextInputCustom = memo(Component)

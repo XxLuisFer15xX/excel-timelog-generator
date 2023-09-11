@@ -16,7 +16,7 @@ interface SomeObject {
   [key: string]: any
 }
 
-const TableBody = <T extends SomeObject>({
+export const TableBody = <T extends SomeObject>({
   actionClick = () => null,
   actions = [],
   getTableBodyProps,
@@ -121,5 +121,3 @@ const TableBody = <T extends SomeObject>({
     </tbody>
   )
 }
-
-export default TableBody

@@ -1,1 +1,1 @@
-export { default as DialogTest } from './DialogTest'
+export * from './DialogTest'

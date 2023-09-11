@@ -6,7 +6,7 @@ import { Dialog } from '@mui/material'
 import { TextCustom } from '@atoms'
 import { DialogTitleCustom } from '@molecules'
 
-const DialogCustom = ({
+const Component = ({
   children = null,
   disabledDismiss = false,
   disabledIconClose = false,
@@ -39,4 +39,4 @@ const DialogCustom = ({
   )
 }
 
-export default memo(DialogCustom)
+export const DialogCustom = memo(Component)

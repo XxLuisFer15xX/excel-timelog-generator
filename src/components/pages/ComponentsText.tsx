@@ -2,7 +2,7 @@
 import { Divider } from '@mui/material'
 import { TextCustom } from '@atoms'
 
-const ComponentsText = () => {
+export const ComponentsText = () => {
   return (
     <div className="pb-4">
       <TextCustom text="Componentes para textos" className="text-6xl" />
@@ -86,5 +86,3 @@ const ComponentsText = () => {
     </div>
   )
 }
-
-export default ComponentsText

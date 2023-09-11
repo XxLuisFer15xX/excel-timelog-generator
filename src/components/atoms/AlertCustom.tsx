@@ -8,7 +8,7 @@ import { IconButtonCustom, TextCustom } from '@atoms'
 // Assets
 import CloseIcon from '@mui/icons-material/Close'
 
-const AlertCustom = ({
+export const AlertCustom = ({
   description = '',
   open = false,
   setOpen = () => null,
@@ -65,5 +65,3 @@ const AlertCustom = ({
     </Collapse>
   )
 }
-
-export default AlertCustom

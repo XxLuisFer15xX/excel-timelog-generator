@@ -3,7 +3,7 @@ import { ControlLabelCustomProps } from 'types'
 // Components
 import { FormControlLabel } from '@mui/material'
 
-const ControlLabelCustom = ({
+export const ControlLabelCustom = ({
   value = undefined,
   children = {} as React.ReactElement<any, any>,
   name = '',
@@ -21,5 +21,3 @@ const ControlLabelCustom = ({
     />
   )
 }
-
-export default ControlLabelCustom

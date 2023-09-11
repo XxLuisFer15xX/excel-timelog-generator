@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close'
 // Styles
 import { colors } from '@styles'
 
-const DialogTitleCustom = ({
+export const DialogTitleCustom = ({
   disabledIconClose = false,
   children = null,
   onClose = () => null,
@@ -36,5 +36,3 @@ const DialogTitleCustom = ({
     </DialogTitle>
   )
 }
-
-export default DialogTitleCustom

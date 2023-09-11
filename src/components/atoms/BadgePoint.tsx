@@ -3,7 +3,7 @@ import { BadgePointProps } from '@types'
 // Styles
 import { colors } from '@styles'
 
-const BadgePoint = ({
+export const BadgePoint = ({
   state = 'UNDEFINED',
   className = '',
   size = 8,
@@ -53,5 +53,3 @@ const BadgePoint = ({
     </div>
   )
 }
-
-export default BadgePoint

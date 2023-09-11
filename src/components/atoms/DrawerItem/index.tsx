@@ -12,7 +12,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 // Styles
 import './styles.css'
 
-const DrawerItem = ({
+export const DrawerItem = ({
   text = '',
   onClick = () => null,
   icon = null,
@@ -40,5 +40,3 @@ const DrawerItem = ({
     </ListItem>
   )
 }
-
-export default DrawerItem

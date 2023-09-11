@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { DatePickerCustomProps } from '@types'
 
 // Components
@@ -10,7 +11,7 @@ import { TextCustom } from '@atoms'
 // Styles
 import { colors } from '@styles'
 
-const DatePickerCustom = ({
+const Component = ({
   name = '',
   value = null,
   setValue = () => null,
@@ -93,4 +94,4 @@ const DatePickerCustom = ({
   )
 }
 
-export default DatePickerCustom
+export const DatePickerCustom = memo(Component)

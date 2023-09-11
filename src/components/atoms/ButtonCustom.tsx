@@ -6,7 +6,7 @@ import { Button } from '@mui/material'
 // Core
 import { renderColor } from '@core/utils'
 
-const ButtonCustom = ({
+export const ButtonCustom = ({
   text = '',
   onClick = () => null,
   variant = 'contained',
@@ -61,5 +61,3 @@ const ButtonCustom = ({
     </Button>
   )
 }
-
-export default ButtonCustom

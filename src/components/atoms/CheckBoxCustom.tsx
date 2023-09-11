@@ -6,7 +6,7 @@ import { Checkbox } from '@mui/material'
 // Core
 import { renderColor } from '@core/utils'
 
-const CheckBoxCustom = ({
+export const CheckBoxCustom = ({
   value = false,
   setValue = () => null,
   disabled = false,
@@ -32,5 +32,3 @@ const CheckBoxCustom = ({
     />
   )
 }
-
-export default CheckBoxCustom

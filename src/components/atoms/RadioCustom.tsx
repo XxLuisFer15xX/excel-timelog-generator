@@ -6,7 +6,7 @@ import { Radio } from '@mui/material'
 // Core
 import { renderColor } from '@core/utils'
 
-const RadioCustom = ({
+export const RadioCustom = ({
   value = false,
   setValue = () => null,
   disabled = false,
@@ -32,5 +32,3 @@ const RadioCustom = ({
     />
   )
 }
-
-export default RadioCustom

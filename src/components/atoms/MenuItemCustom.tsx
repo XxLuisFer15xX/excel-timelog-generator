@@ -6,7 +6,7 @@ import { MenuItem } from '@mui/material'
 // Core
 import { colors } from '@styles'
 
-const MenuItemCustom = ({
+export const MenuItemCustom = ({
   children = null,
   value = '',
   ...rest
@@ -35,5 +35,3 @@ const MenuItemCustom = ({
     </MenuItem>
   )
 }
-
-export default MenuItemCustom

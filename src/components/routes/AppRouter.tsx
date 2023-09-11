@@ -21,7 +21,7 @@ import {
 } from '@pages'
 import { Error404 } from '@pages'
 
-const AppRouter = () => {
+export const AppRouter = () => {
   return (
     <Router>
       <Routes>
@@ -43,5 +43,3 @@ const AppRouter = () => {
     </Router>
   )
 }
-
-export default AppRouter

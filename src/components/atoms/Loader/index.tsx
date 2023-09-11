@@ -10,7 +10,7 @@ import LocationAnimation from '@assets/animations/LocationAnimation.json'
 //Styles
 import './styles.css'
 
-const Loader = ({
+export const Loader = ({
   typeAnimation = 'loader',
   loop = true,
   size = '3rem',
@@ -72,5 +72,3 @@ const Loader = ({
     </div>
   )
 }
-
-export default Loader

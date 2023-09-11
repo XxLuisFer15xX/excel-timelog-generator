@@ -14,7 +14,7 @@ import {
 // Const
 import { constGeneros, constTiposIdentidad } from '@common/constants'
 
-const ComponentsInputs4 = () => {
+export const ComponentsInputs4 = () => {
   const [check1, setCheck1] = useState(false)
   const [check2, setCheck2] = useState(true)
   const [check3, setCheck3] = useState(false)
@@ -287,5 +287,3 @@ const ComponentsInputs4 = () => {
     </div>
   )
 }
-
-export default ComponentsInputs4

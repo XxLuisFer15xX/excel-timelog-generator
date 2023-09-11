@@ -8,7 +8,7 @@ import { TextCustom, TextInputCustom } from '@atoms'
 import SendIcon from '@mui/icons-material/Send'
 import ReplyIcon from '@mui/icons-material/Reply'
 
-const ComponentsInputs1 = () => {
+export const ComponentsInputs1 = () => {
   const [inputDefault, setInputDefault] = useState('')
   const [inputDisabled, setInputDisabled] = useState('')
   const [inputRequired, setInputRequired] = useState('')
@@ -130,5 +130,3 @@ const ComponentsInputs1 = () => {
     </div>
   )
 }
-
-export default ComponentsInputs1

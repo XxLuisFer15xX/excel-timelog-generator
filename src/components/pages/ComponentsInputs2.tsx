@@ -7,7 +7,7 @@ import { TextCustom, TextInputCustom } from '@atoms'
 // Core
 import { validInputEmail } from '@core/validations'
 
-const ComponentsInputs2 = () => {
+export const ComponentsInputs2 = () => {
   const [inputDefault, setInputDefault] = useState('')
   const [iOnlyNumbers, setIOnlyNumbers] = useState('')
   const [iOnlyLetters, setIOnlyLetters] = useState('')
@@ -148,5 +148,3 @@ const ComponentsInputs2 = () => {
     </div>
   )
 }
-
-export default ComponentsInputs2

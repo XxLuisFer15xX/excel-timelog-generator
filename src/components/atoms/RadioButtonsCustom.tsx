@@ -7,7 +7,7 @@ import { ControlLabelCustom, TextCustom } from '@atoms'
 // Core
 import { renderColor } from '@core/utils'
 
-const RadioButtonsCustom = ({
+export const RadioButtonsCustom = ({
   name = '',
   value = '',
   setValue = () => null,
@@ -55,5 +55,3 @@ const RadioButtonsCustom = ({
     </div>
   )
 }
-
-export default RadioButtonsCustom

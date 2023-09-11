@@ -1,2 +1,2 @@
-export { default as DialogCustom } from './DialogCustom'
-export { default as TableCustom } from './TableCustom'
+export * from './DialogCustom'
+export * from './TableCustom'

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Divider } from '@mui/material'
 import { ButtonCustom, Loader, TextCustom } from '@atoms'
 
-const ComponentsLoader = () => {
+export const ComponentsLoader = () => {
   const [pause, setPause] = useState(false)
   const [play, setPlay] = useState(true)
   const [stop, setStop] = useState(false)
@@ -179,5 +179,3 @@ const ComponentsLoader = () => {
     </div>
   )
 }
-
-export default ComponentsLoader

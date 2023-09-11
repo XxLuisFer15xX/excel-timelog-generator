@@ -6,7 +6,7 @@ import { FormControl, InputLabel } from '@mui/material'
 // Core
 import { colors } from '@styles'
 
-const FormControlCustom = ({
+export const FormControlCustom = ({
   children = null,
   name = '',
   fontSize = 18,
@@ -39,5 +39,3 @@ const FormControlCustom = ({
     </FormControl>
   )
 }
-
-export default FormControlCustom

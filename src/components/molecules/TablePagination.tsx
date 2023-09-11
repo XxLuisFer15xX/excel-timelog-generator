@@ -11,7 +11,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 // Core
 import { getPagination } from '@core/utils'
 
-const TablePagination = ({
+export const TablePagination = ({
   canPreviousPage = false,
   canNextPage = false,
   gotoPage = () => null,
@@ -65,5 +65,3 @@ const TablePagination = ({
     </div>
   )
 }
-
-export default TablePagination

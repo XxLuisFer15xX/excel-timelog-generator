@@ -7,7 +7,7 @@ import { DatePickerCustom, SelectCustom, TextCustom } from '@atoms'
 // Const
 import { constGeneros } from '@common/constants'
 
-const ComponentsInputs3 = () => {
+export const ComponentsInputs3 = () => {
   const [genero1, setGenero1] = useState('')
   const [genero2, setGenero2] = useState('')
   const [genero3, setGenero3] = useState('')
@@ -129,5 +129,3 @@ const ComponentsInputs3 = () => {
     </div>
   )
 }
-
-export default ComponentsInputs3

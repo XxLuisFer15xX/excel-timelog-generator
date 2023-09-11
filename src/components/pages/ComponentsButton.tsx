@@ -7,7 +7,7 @@ import SendIcon from '@mui/icons-material/Send'
 import ReplyIcon from '@mui/icons-material/Reply'
 import DeleteIcon from '@mui/icons-material/Delete'
 
-const ComponentsButton = () => {
+export const ComponentsButton = () => {
   return (
     <div className="pb-4">
       <TextCustom text="Componentes para botones" className="text-6xl" />
@@ -383,5 +383,3 @@ const ComponentsButton = () => {
     </div>
   )
 }
-
-export default ComponentsButton
