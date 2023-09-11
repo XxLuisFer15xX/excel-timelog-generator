@@ -10,12 +10,14 @@ export const ButtonCustom = ({
   text = '',
   onClick = () => null,
   variant = 'contained',
+  component = 'button',
   className = '',
   startIcon = null,
   endIcon = null,
   disabled = false,
   typeColor = undefined,
   textTransform = 'none',
+  children = null,
 }: ButtonCustomProps) => {
   return (
     <Button
@@ -26,6 +28,7 @@ export const ButtonCustom = ({
       startIcon={startIcon}
       endIcon={endIcon}
       disabled={disabled}
+      component={component}
       sx={{
         textTransform,
         backgroundColor:
@@ -58,6 +61,7 @@ export const ButtonCustom = ({
       }}
     >
       {text}
+      {children}
     </Button>
   )
 }

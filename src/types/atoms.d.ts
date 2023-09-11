@@ -41,12 +41,14 @@ export interface ButtonCustomProps {
   text: string
   onClick?: () => void
   variant?: ButtonProps['variant']
+  component?: ButtonProps['component']
   className?: string
   startIcon?: React.ReactElement<SvgIconProps> | null
   endIcon?: React.ReactElement<SvgIconProps> | null
   disabled?: boolean
   typeColor?: TypeColor
   textTransform?: React.CSSProperties['textTransform']
+  children?: React.ReactNode
 }
 
 export interface CheckBoxCustomProps {
