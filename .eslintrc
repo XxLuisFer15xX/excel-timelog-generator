@@ -1,0 +1,62 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "prettier",
+    "react",
+    "react/jsx-runtime"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"]
+      }
+    }
+  },
+  "rules": {
+    "import/no-unresolved": [
+      "error",
+      {
+        "plugins": [
+          "module-resolve",
+          {
+            "alias": {
+              "@assets": "src/assets",
+              "@common": "src/common",
+              "@atoms": "src/components/atoms",
+              "@molecules": "src/components/molecules",
+              "@organisms": "src/components/organisms",
+              "@pages": "src/components/pages",
+              "@routes": "src/components/routes",
+              "@styles": "src/components/styles",
+              "@templates": "src/components/templates",
+              "@core": "src/core",
+              "@hooks": "src/hooks",
+              "@types": "src/types",
+              "@languages": "src/languages",
+              "@services": "src/services"
+            }
+          }
+        ]
+      }
+    ],
+    "prettier/prettier": "warn",
+    "@typescript-eslint/no-explicit-any": "off"
+  }
+}
