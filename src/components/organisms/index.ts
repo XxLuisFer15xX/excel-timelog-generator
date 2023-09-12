@@ -1,1 +1,1 @@
-export * from './DialogTest'
+export * from './DialogAddAnalysts'

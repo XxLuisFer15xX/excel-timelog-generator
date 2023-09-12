@@ -32,3 +32,8 @@ export type TypeValidation =
   | 'onlyAlphanumericExtend'
   | 'validateEmail'
   | 'validateEmailDomain'
+
+export interface SelectableData {
+  id: string
+  label: string
+}

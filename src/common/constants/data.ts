@@ -1,4 +1,6 @@
-export const MONTHS = [
+import { SelectableData } from '@types'
+
+export const MONTHS: SelectableData[] = [
   { id: 'Enero', label: 'Enero' },
   { id: 'Febrero', label: 'Febrero' },
   { id: 'Marzo', label: 'Marzo' },
@@ -13,7 +15,7 @@ export const MONTHS = [
   { id: 'Diciembre', label: 'Diciembre' },
 ]
 
-export const YEARS = [
+export const YEARS: SelectableData[] = [
   { id: '2021', label: '2021' },
   { id: '2022', label: '2022' },
   { id: '2023', label: '2023' },
@@ -26,7 +28,7 @@ export const YEARS = [
   { id: '2030', label: '2030' },
 ]
 
-export const ANALYSTS = [
+export const ANALYSTS: SelectableData[] = [
   { id: 'Aaron Elvir', label: 'Aaron Elvir' },
   { id: 'Luis Robles', label: 'Luis Robles' },
   { id: 'Gustavo Aguilar', label: 'Gustavo Aguilar' },

@@ -1,19 +1,62 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { SelectableData } from '@types'
 
-// Components
-import { ButtonCustom, SelectCustom, TextCustom, TextInputCustom } from '@atoms'
+// components
+import {
+  ButtonCustom,
+  IconButtonCustom,
+  SelectCustom,
+  TextCustom,
+  TextInputCustom,
+} from '@atoms'
 import { ANALYSTS, MONTHS, YEARS } from '@common/constants'
+import { DialogAddAnalysts } from '@organisms'
+
+// core
 import { exportWorksheet, parseCSV } from '@core/utils'
+
+// assets
+import AddIcon from '@mui/icons-material/Add'
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
+
+// services
+import {
+  stGetAnalysts,
+  stRemoveAnalysts,
+  stSetAnalysts,
+} from '@services/storage'
 
 export const Home = () => {
   const [month, setMonth] = useState('Septiembre')
   const [year, setYear] = useState('2023')
   const [firstName, setFirstName] = useState('Luis')
   const [firstLastName, setFirstLastName] = useState('Solano')
-  const [analyst, setAnalyst] = useState('Aaron Elvir')
+  const [analyst, setAnalyst] = useState('')
+  const [analysts, setAnalysts] = useState<SelectableData[]>([])
   const [environment, setEnvironment] = useState('GRYCO')
   const [internal, setInternal] = useState('Mantenimiento')
   const [file, setFile] = useState<File | null>(null)
+  const [showAddAnalysts, setShowAddAnalysts] = useState(false)
+
+  useEffect(() => {
+    const { success, data } = stGetAnalysts()
+    if (success) {
+      setAnalysts(data)
+    } else {
+      setAnalysts(ANALYSTS)
+    }
+  }, [showAddAnalysts])
+
+  const handleAddAnalysts = () => {
+    setShowAddAnalysts(true)
+  }
+
+  const handleResetAnalysts = () => {
+    setAnalyst('')
+    stRemoveAnalysts()
+    stSetAnalysts(ANALYSTS)
+    setAnalysts(ANALYSTS)
+  }
 
   const handleUploadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return
@@ -133,11 +176,19 @@ export const Home = () => {
             <div className="flex gap-2 flex-row xs:flex-row">
               <SelectCustom
                 name="Analista"
-                options={ANALYSTS}
+                options={analysts}
                 value={analyst}
                 setValue={setAnalyst}
                 required
                 className="w-full mb-2"
+              />
+              <IconButtonCustom
+                icon={<AddIcon />}
+                onClick={handleAddAnalysts}
+              />
+              <IconButtonCustom
+                icon={<RestartAltIcon />}
+                onClick={handleResetAnalysts}
               />
             </div>
             <div className="flex gap-2 flex-row xs:flex-row">
@@ -192,6 +243,7 @@ export const Home = () => {
           />
         </div>
       </div>
+      <DialogAddAnalysts open={showAddAnalysts} setOpen={setShowAddAnalysts} />
     </div>
   )
 }
