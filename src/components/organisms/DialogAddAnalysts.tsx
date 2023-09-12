@@ -93,8 +93,8 @@ const Component = ({ open = false, setOpen = () => null }: DialogTestProps) => {
       disabledDismiss
       disabledIconClose
     >
-      <DialogContent style={{ width: 500 }}>
-        <div className="flex flex-col relative pt-4">
+      <DialogContent>
+        <div className="flex flex-col pt-4">
           <AlertCustom
             title={alert.title}
             description={alert.description}
@@ -102,7 +102,10 @@ const Component = ({ open = false, setOpen = () => null }: DialogTestProps) => {
             setOpen={setShowAlert}
             severity={alert.severity}
           />
-          <TextCustom text="Ingrese los datos del Analista" variant="h5" />
+          <TextCustom
+            text="Ingrese los datos del Analista"
+            className="text-lg font-semibold"
+          />
           <TextInputCustom
             name="Nombre y Apellido"
             value={name}

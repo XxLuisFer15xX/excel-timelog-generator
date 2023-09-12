@@ -195,7 +195,7 @@ export const Home = () => {
 
   return (
     <div className="w-screen min-h-screen flex justify-center items-center bg-slate-600">
-      <div className="flex flex-col px-6 py-8 rounded-xl bg-white">
+      <div className="max-w-4xl w-full mx-0 sm:mx-12 md:mx-24 flex flex-col px-6 py-8 rounded-none sm:rounded-xl bg-white">
         <TextCustom
           text="Exportar timelog CSV al formato Excel"
           className="self-center text-2xl font-bold text-general"
@@ -206,7 +206,7 @@ export const Home = () => {
               text="Ingrese el nombre de su archivo Excel"
               className="text-lg font-semibold mb-2"
             />
-            <div className="flex gap-2 flex-row xs:flex-row">
+            <div className="flex gap-2 flex-col sm:flex-row">
               <SelectCustom
                 name="Mes"
                 options={MONTHS}
@@ -226,7 +226,7 @@ export const Home = () => {
                 msgError={messages.year}
               />
             </div>
-            <div className="flex gap-2 flex-row xs:flex-row">
+            <div className="flex gap-2 flex-col sm:flex-row">
               <TextInputCustom
                 name="Primer Nombre"
                 value={firstName}
@@ -252,7 +252,7 @@ export const Home = () => {
               text="Ingrese las variables de su TimeLog"
               className="text-lg font-semibold mb-2"
             />
-            <div className="flex gap-2 flex-row xs:flex-row">
+            <div className="flex gap-2 flex-row">
               <SelectCustom
                 name="Analista"
                 options={analysts}
@@ -271,7 +271,7 @@ export const Home = () => {
                 onClick={handleResetAnalysts}
               />
             </div>
-            <div className="flex gap-2 flex-row xs:flex-row">
+            <div className="flex gap-2 flex-col sm:flex-row">
               <TextInputCustom
                 name="Enviroment"
                 value={environment}
