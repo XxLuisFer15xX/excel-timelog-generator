@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { SelectableData } from '@types'
 
+// hooks
+import { useMessage } from '@hooks/customs'
+
 // components
 import {
   ButtonCustom,
@@ -26,17 +29,36 @@ import {
   stSetAnalysts,
 } from '@services/storage'
 
+interface FormData {
+  month: string | null
+  year: string | null
+  firstName: string | null
+  firstLastName: string | null
+  analyst: string | null
+  environment: string | null
+  internal: string | null
+}
+
 export const Home = () => {
-  const [month, setMonth] = useState('Septiembre')
-  const [year, setYear] = useState('2023')
-  const [firstName, setFirstName] = useState('Luis')
-  const [firstLastName, setFirstLastName] = useState('Solano')
+  const [month, setMonth] = useState('')
+  const [year, setYear] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [firstLastName, setFirstLastName] = useState('')
   const [analyst, setAnalyst] = useState('')
   const [analysts, setAnalysts] = useState<SelectableData[]>([])
-  const [environment, setEnvironment] = useState('GRYCO')
-  const [internal, setInternal] = useState('Mantenimiento')
+  const [environment, setEnvironment] = useState('')
+  const [internal, setInternal] = useState('')
   const [file, setFile] = useState<File | null>(null)
   const [showAddAnalysts, setShowAddAnalysts] = useState(false)
+  const { messages, setMessages, resetMessages } = useMessage<FormData>({
+    month: null,
+    year: null,
+    firstName: null,
+    firstLastName: null,
+    analyst: null,
+    environment: null,
+    internal: null,
+  })
 
   useEffect(() => {
     const { success, data } = stGetAnalysts()
@@ -63,59 +85,112 @@ export const Home = () => {
     setFile(event.target.files[0])
   }
 
+  const formValid = () => {
+    let isValid = true
+    const msgValid = {} as FormData
+    !month ? (msgValid.month = 'Mes no asignado') : (msgValid.month = '')
+    !year ? (msgValid.year = 'Año no asignado') : (msgValid.year = '')
+    !firstName
+      ? (msgValid.firstName = 'Nombre no asignado')
+      : (msgValid.firstName = '')
+    !firstLastName
+      ? (msgValid.firstLastName = 'Apellido no asignado')
+      : (msgValid.firstLastName = '')
+    !analyst
+      ? (msgValid.analyst = 'Analista no asignado')
+      : (msgValid.analyst = '')
+    !environment
+      ? (msgValid.environment = 'Environment no asignado')
+      : (msgValid.environment = '')
+    setMessages(msgValid)
+    Object.entries(msgValid).forEach(([_key, value]) => {
+      value ? (isValid = false) : null
+    })
+    return isValid
+  }
+
   const handleExport = () => {
-    if (!file) return
-    let reader = new FileReader()
-    reader.onload = e => {
-      let lineResult = e.target?.result?.toString()
-      if (!lineResult) return
-      let lines = parseCSV(lineResult)
-      let newLines = []
-      let newLineHeader = []
-      newLineHeader[0] = 'Project'
-      newLineHeader[1] = 'Issue Type'
-      newLineHeader[2] = 'Key'
-      newLineHeader[3] = 'Summary'
-      newLineHeader[4] = 'Analista'
-      newLineHeader[5] = 'Enviroment'
-      newLineHeader[6] = 'Interno'
-      newLineHeader[7] = 'Date Started'
-      newLineHeader[8] = 'Display Name'
-      newLineHeader[9] = 'Time Spent (h)'
-      newLineHeader[10] = 'Work Description'
-      newLines.push(newLineHeader)
-      for (let i = 1; i < lines.length; i++) {
-        if (lines[i]?.length) {
-          let newLine = []
-          newLine[0] = lines[i][8]
-          newLine[1] = lines[i][6]
-          newLine[2] = lines[i][3]
-          newLine[3] = lines[i][9]
-          newLine[4] = analyst
-          newLine[5] = environment
-          newLine[6] = internal
-          newLine[7] = lines[i][4]
-          newLine[8] = lines[i][1]
-          newLine[9] = lines[i][0] / 60
-          newLine[10] = lines[i][7]
-          newLines.push(newLine)
+    resetMessages()
+    if (formValid()) {
+      if (!file) return
+      let reader = new FileReader()
+      reader.onload = e => {
+        let lineResult = e.target?.result?.toString()
+        if (!lineResult) return
+        let lines = parseCSV(lineResult)
+        let newLines = []
+        let newLineHeader = []
+        let incrementIndex = 0
+        newLineHeader[incrementIndex] = 'Project'
+        incrementIndex++
+        newLineHeader[incrementIndex] = 'Issue Type'
+        incrementIndex++
+        newLineHeader[incrementIndex] = 'Key'
+        incrementIndex++
+        newLineHeader[incrementIndex] = 'Summary'
+        incrementIndex++
+        newLineHeader[incrementIndex] = 'Analista'
+        incrementIndex++
+        newLineHeader[incrementIndex] = 'Enviroment'
+        incrementIndex++
+        if (internal) {
+          newLineHeader[incrementIndex] = 'Interno'
+          incrementIndex++
         }
-      }
-      const timelog = []
-      for (let i = 1; i < newLines.length; i++) {
-        let obj = {}
-        for (let j = 0; j < newLines[0].length; j++) {
-          obj = {
-            ...obj,
-            ...{ [newLines[0][j]]: newLines[i][j] },
+        newLineHeader[incrementIndex] = 'Date Started'
+        incrementIndex++
+        newLineHeader[incrementIndex] = 'Display Name'
+        incrementIndex++
+        newLineHeader[incrementIndex] = 'Time Spent (h)'
+        incrementIndex++
+        newLineHeader[incrementIndex] = 'Work Description'
+        newLines.push(newLineHeader)
+        for (let i = 1; i < lines.length; i++) {
+          if (lines[i]?.length) {
+            let newLine = []
+            incrementIndex = 0
+            newLine[incrementIndex] = lines[i][8]
+            incrementIndex++
+            newLine[incrementIndex] = lines[i][6]
+            incrementIndex++
+            newLine[incrementIndex] = lines[i][3]
+            incrementIndex++
+            newLine[incrementIndex] = lines[i][9]
+            incrementIndex++
+            newLine[incrementIndex] = analyst
+            incrementIndex++
+            newLine[incrementIndex] = environment
+            incrementIndex++
+            if (internal) {
+              newLine[incrementIndex] = internal
+              incrementIndex++
+            }
+            newLine[incrementIndex] = lines[i][4]
+            incrementIndex++
+            newLine[incrementIndex] = lines[i][1]
+            incrementIndex++
+            newLine[incrementIndex] = lines[i][0] / 60
+            incrementIndex++
+            newLine[incrementIndex] = lines[i][7]
+            newLines.push(newLine)
           }
         }
-        timelog.push(obj)
+        const timelog = []
+        for (let i = 1; i < newLines.length; i++) {
+          let obj = {}
+          for (let j = 0; j < newLines[0].length; j++) {
+            obj = {
+              ...obj,
+              ...{ [newLines[0][j]]: newLines[i][j] },
+            }
+          }
+          timelog.push(obj)
+        }
+        let fileName = `${month}_${year}_${firstName}_${firstLastName}`
+        exportWorksheet(timelog, fileName)
       }
-      let fileName = `${month}_${year}_${firstName}_${firstLastName}`
-      exportWorksheet(timelog, fileName)
+      reader.readAsBinaryString(file)
     }
-    reader.readAsBinaryString(file)
   }
 
   return (
@@ -139,6 +214,7 @@ export const Home = () => {
                 setValue={setMonth}
                 required
                 className="w-full mb-2"
+                msgError={messages.month}
               />
               <SelectCustom
                 name="Mes"
@@ -147,6 +223,7 @@ export const Home = () => {
                 setValue={setYear}
                 required
                 className="w-full mb-2"
+                msgError={messages.year}
               />
             </div>
             <div className="flex gap-2 flex-row xs:flex-row">
@@ -157,6 +234,7 @@ export const Home = () => {
                 className="w-full mb-2"
                 required
                 typesValidation="onlyLettersExtend"
+                msgError={messages.firstName}
               />
               <TextInputCustom
                 name="Primer Apellido"
@@ -165,6 +243,7 @@ export const Home = () => {
                 required
                 className="w-full mb-2"
                 typesValidation="onlyLettersExtend"
+                msgError={messages.firstLastName}
               />
             </div>
           </div>
@@ -181,6 +260,7 @@ export const Home = () => {
                 setValue={setAnalyst}
                 required
                 className="w-full mb-2"
+                msgError={messages.analyst}
               />
               <IconButtonCustom
                 icon={<AddIcon />}
@@ -199,14 +279,15 @@ export const Home = () => {
                 className="w-full mb-2"
                 required
                 typesValidation="onlyLettersExtend"
+                msgError={messages.environment}
               />
               <TextInputCustom
                 name="Interno"
                 value={internal}
                 setValue={setInternal}
-                required
                 className="w-full mb-2"
                 typesValidation="onlyLettersExtend"
+                msgError={messages.internal}
               />
             </div>
           </div>

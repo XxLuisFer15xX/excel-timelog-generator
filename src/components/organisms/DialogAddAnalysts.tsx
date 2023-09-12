@@ -54,13 +54,14 @@ const Component = ({ open = false, setOpen = () => null }: DialogTestProps) => {
       isValid = false
       setMessages({
         ...messages,
-        name: 'Nombre no ha sido asignado',
+        name: 'Nombre no asignado',
       })
     }
     return isValid
   }
 
   const handleAccept = () => {
+    resetMessages()
     if (formValid()) {
       setLoader(true)
       const { success, data } = stGetAnalysts()
