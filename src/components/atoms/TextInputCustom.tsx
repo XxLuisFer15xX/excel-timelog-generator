@@ -33,6 +33,7 @@ const Component = ({
   multiline = false,
   required = false,
   fontSize = 18,
+  allowSpaces = true,
 }: TextInputCustomProps) => {
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue: string = e.target.value
@@ -41,6 +42,9 @@ const Component = ({
       isValid = validInputInitialNumbers(inputValue, validInitNumbers)
     } else {
       isValid = validTextInput(inputValue, typesValidation)
+    }
+    if (!allowSpaces && inputValue.includes(' ')) {
+      isValid = false
     }
     if (isValid || inputValue === '' || !inputValue) {
       setValue(inputValue)

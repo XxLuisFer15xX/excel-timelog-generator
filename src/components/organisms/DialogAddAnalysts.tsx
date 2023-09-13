@@ -112,6 +112,7 @@ const Component = ({ open = false, setOpen = () => null }: DialogTestProps) => {
             setValue={setName}
             className="mb-2"
             required
+            maxLength={40}
             onEnter={handleAccept}
             msgError={messages.name}
           />

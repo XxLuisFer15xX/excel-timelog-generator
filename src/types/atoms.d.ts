@@ -207,4 +207,5 @@ export interface TextInputCustomProps {
   multiline?: boolean
   required?: boolean
   fontSize?: number
+  allowSpaces?: boolean
 }

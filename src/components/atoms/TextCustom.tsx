@@ -15,7 +15,7 @@ export const TextCustom = ({
       paragraph={isParagraph}
       noWrap={isWrap}
       variant={variant}
-      className={`font-poppins font-normal ${className}`}
+      className={`font-poppins ${className}`}
     >
       {text}
     </Typography>

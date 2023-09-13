@@ -21,6 +21,9 @@ import { exportWorksheet, parseCSV } from '@core/utils'
 // assets
 import AddIcon from '@mui/icons-material/Add'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
+import ReportIcon from '@mui/icons-material/Report'
+import InfoIcon from '@mui/icons-material/Info'
+import PreviewIcon from '@mui/icons-material/Preview'
 
 // services
 import {
@@ -28,6 +31,7 @@ import {
   stRemoveAnalysts,
   stSetAnalysts,
 } from '@services/storage'
+import { Link, Tooltip } from '@mui/material'
 
 interface FormData {
   month: string | null
@@ -35,8 +39,7 @@ interface FormData {
   firstName: string | null
   firstLastName: string | null
   analyst: string | null
-  environment: string | null
-  internal: string | null
+  application: string | null
 }
 
 export const Home = () => {
@@ -46,8 +49,7 @@ export const Home = () => {
   const [firstLastName, setFirstLastName] = useState('')
   const [analyst, setAnalyst] = useState('')
   const [analysts, setAnalysts] = useState<SelectableData[]>([])
-  const [environment, setEnvironment] = useState('')
-  const [internal, setInternal] = useState('')
+  const [application, setApplication] = useState('')
   const [file, setFile] = useState<File | null>(null)
   const [showAddAnalysts, setShowAddAnalysts] = useState(false)
   const { messages, setMessages, resetMessages } = useMessage<FormData>({
@@ -56,8 +58,7 @@ export const Home = () => {
     firstName: null,
     firstLastName: null,
     analyst: null,
-    environment: null,
-    internal: null,
+    application: null,
   })
 
   useEffect(() => {
@@ -99,9 +100,9 @@ export const Home = () => {
     !analyst
       ? (msgValid.analyst = 'Analista no asignado')
       : (msgValid.analyst = '')
-    !environment
-      ? (msgValid.environment = 'Environment no asignado')
-      : (msgValid.environment = '')
+    !application
+      ? (msgValid.application = 'Aplicación no asignada')
+      : (msgValid.application = '')
     setMessages(msgValid)
     Object.entries(msgValid).forEach(([_key, value]) => {
       value ? (isValid = false) : null
@@ -129,14 +130,10 @@ export const Home = () => {
         incrementIndex++
         newLineHeader[incrementIndex] = 'Summary'
         incrementIndex++
-        newLineHeader[incrementIndex] = 'Analista'
+        newLineHeader[incrementIndex] = 'Analyst'
         incrementIndex++
-        newLineHeader[incrementIndex] = 'Enviroment'
+        newLineHeader[incrementIndex] = 'Application'
         incrementIndex++
-        if (internal) {
-          newLineHeader[incrementIndex] = 'Interno'
-          incrementIndex++
-        }
         newLineHeader[incrementIndex] = 'Date Started'
         incrementIndex++
         newLineHeader[incrementIndex] = 'Display Name'
@@ -159,12 +156,8 @@ export const Home = () => {
             incrementIndex++
             newLine[incrementIndex] = analyst
             incrementIndex++
-            newLine[incrementIndex] = environment
+            newLine[incrementIndex] = application
             incrementIndex++
-            if (internal) {
-              newLine[incrementIndex] = internal
-              incrementIndex++
-            }
             newLine[incrementIndex] = lines[i][4]
             incrementIndex++
             newLine[incrementIndex] = lines[i][1]
@@ -193,18 +186,36 @@ export const Home = () => {
     }
   }
 
+  const handleReportProblem = () => {
+    window.location.href = 'mailto:lsolano@goconsultores.com'
+  }
+
   return (
     <div className="w-screen min-h-screen flex justify-center items-center bg-slate-600">
       <div className="max-w-4xl w-full mx-0 sm:mx-12 md:mx-24 flex flex-col px-6 py-8 rounded-none sm:rounded-xl bg-white">
         <TextCustom
-          text="Exportar timelog CSV al formato Excel"
+          text="Conversor de Formato TimeLog"
           className="self-center text-2xl font-bold text-general"
         />
         <div className="flex flex-col my-4 relative">
+          <div className="flex items-center mb-2">
+            <InfoIcon className="text-primary" />
+            <TextCustom
+              text="El funcionamiento de esta aplicación es para leer los timelogs que genera Azure DevOps en formato CSV y convertirlos a Excel, aplicando el formato estándar."
+              className="text-sm ml-2"
+            />
+            <IconButtonCustom
+              icon={
+                <Tooltip title="Vista previa de resultados">
+                  <PreviewIcon />
+                </Tooltip>
+              }
+            />
+          </div>
           <div className="flex flex-col my-2">
             <TextCustom
-              text="Ingrese el nombre de su archivo Excel"
-              className="text-lg font-semibold mb-2"
+              text="Ingrese sus datos para generar el archivo Excel"
+              className="text-lg font-medium mb-2"
             />
             <div className="flex gap-2 flex-col sm:flex-row">
               <SelectCustom
@@ -217,7 +228,7 @@ export const Home = () => {
                 msgError={messages.month}
               />
               <SelectCustom
-                name="Mes"
+                name="Año"
                 options={YEARS}
                 value={year}
                 setValue={setYear}
@@ -233,6 +244,8 @@ export const Home = () => {
                 setValue={setFirstName}
                 className="w-full mb-2"
                 required
+                allowSpaces={false}
+                maxLength={20}
                 typesValidation="onlyLettersExtend"
                 msgError={messages.firstName}
               />
@@ -241,6 +254,8 @@ export const Home = () => {
                 value={firstLastName}
                 setValue={setFirstLastName}
                 required
+                allowSpaces={false}
+                maxLength={20}
                 className="w-full mb-2"
                 typesValidation="onlyLettersExtend"
                 msgError={messages.firstLastName}
@@ -250,7 +265,7 @@ export const Home = () => {
           <div className="flex flex-col my-2">
             <TextCustom
               text="Ingrese las variables de su TimeLog"
-              className="text-lg font-semibold mb-2"
+              className="text-lg font-medium mb-2"
             />
             <div className="flex gap-2 flex-row">
               <SelectCustom
@@ -263,56 +278,76 @@ export const Home = () => {
                 msgError={messages.analyst}
               />
               <IconButtonCustom
-                icon={<AddIcon />}
+                icon={
+                  <Tooltip title="Agregar analista">
+                    <AddIcon />
+                  </Tooltip>
+                }
                 onClick={handleAddAnalysts}
+                typeColor="primary"
               />
               <IconButtonCustom
-                icon={<RestartAltIcon />}
+                icon={
+                  <Tooltip title="Restaurar la lista orginal de analistas">
+                    <RestartAltIcon />
+                  </Tooltip>
+                }
                 onClick={handleResetAnalysts}
+                typeColor="primary"
               />
             </div>
             <div className="flex gap-2 flex-col sm:flex-row">
               <TextInputCustom
-                name="Enviroment"
-                value={environment}
-                setValue={setEnvironment}
+                name="Aplicación"
+                placeholder="Por ejemplo: GRYCO"
+                value={application}
+                setValue={setApplication}
                 className="w-full mb-2"
                 required
-                typesValidation="onlyLettersExtend"
-                msgError={messages.environment}
-              />
-              <TextInputCustom
-                name="Interno"
-                value={internal}
-                setValue={setInternal}
-                className="w-full mb-2"
-                typesValidation="onlyLettersExtend"
-                msgError={messages.internal}
+                maxLength={50}
+                msgError={messages.application}
               />
             </div>
           </div>
-          <div className="flex flex-row mb-6">
-            <ButtonCustom
-              text="Cargar CSV"
-              className="mr-2"
-              typeColor="primary"
-              component="label"
-              variant={file ? 'contained' : 'outlined'}
-            >
-              <input type="file" hidden onChange={handleUploadFile} />
-            </ButtonCustom>
-            <div className="flex flex-col justify-end">
-              {file?.name ? (
-                <TextCustom
-                  text={file.name}
-                  className="font-bold text-success"
-                />
-              ) : (
-                <TextCustom
-                  text="Cargue su CSV."
-                  className="text-sm text-danger italic"
-                />
-              )}
+          <div className="flex flex-row mb-6 justify-between">
+            <div className="flex flex-row">
+              <ButtonCustom
+                text="Cargar CSV"
+                className="mr-2"
+                typeColor="primary"
+                component="label"
+                variant={file ? 'contained' : 'outlined'}
+              >
+                <input type="file" hidden onChange={handleUploadFile} />
+              </ButtonCustom>
+              <div className="flex flex-col justify-end">
+                {file?.name ? (
+                  <TextCustom
+                    text={file.name}
+                    className="font-bold text-success"
+                  />
+                ) : (
+                  <TextCustom
+                    text="Cargue su CSV."
+                    className="text-sm text-danger italic"
+                  />
+                )}
+              </div>
+            </div>
+            <div className="flex justify-center items-center">
+              <TextCustom
+                text="Reportar problema"
+                className="text-sm text-center italic"
+              />
+              <IconButtonCustom
+                icon={
+                  <Tooltip title="Reportar algún error o sugerir mejora">
+                    <ReportIcon />
+                  </Tooltip>
+                }
+                onClick={handleReportProblem}
+                typeColor="warning"
+              />
             </div>
           </div>
           <ButtonCustom
@@ -322,6 +357,19 @@ export const Home = () => {
             typeColor="primary"
             disabled={file ? false : true}
           />
+          <div className="flex flex-col mt-4">
+            <TextCustom
+              text="© Derechos reservados - Luis Solano - GO Consultores"
+              className="text-sm font-semibold text-center italic"
+            />
+            <Link
+              href="https://www.goconsultores.com/"
+              className="self-center mt-2"
+              target="_blank"
+            >
+              GO - Consultores
+            </Link>
+          </div>
         </div>
       </div>
       <DialogAddAnalysts open={showAddAnalysts} setOpen={setShowAddAnalysts} />
