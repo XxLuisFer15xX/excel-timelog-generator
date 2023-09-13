@@ -204,13 +204,18 @@ export const Home = () => {
               text="El funcionamiento de esta aplicación es para leer los timelogs que genera Azure DevOps en formato CSV y convertirlos a Excel, aplicando el formato estándar."
               className="text-sm ml-2"
             />
-            <IconButtonCustom
-              icon={
-                <Tooltip title="Vista previa de resultados">
-                  <PreviewIcon />
-                </Tooltip>
-              }
-            />
+            <Link
+              variant="body2"
+              href="/PreviewTimeLog.png"
+              target="_blank"
+              className="flex flex-col items-center font-poppins"
+              underline="none"
+            >
+              <Tooltip title="Vista previa de resultados">
+                <PreviewIcon />
+              </Tooltip>
+              Previsualizar
+            </Link>
           </div>
           <div className="flex flex-col my-2">
             <TextCustom
@@ -364,7 +369,7 @@ export const Home = () => {
             />
             <Link
               href="https://www.goconsultores.com/"
-              className="self-center mt-2"
+              className="self-center mt-2 font-poppins"
               target="_blank"
             >
               GO - Consultores
