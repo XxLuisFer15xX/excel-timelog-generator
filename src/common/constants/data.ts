@@ -28,10 +28,4 @@ export const YEARS: SelectableData[] = [
   { id: '2030', label: '2030' },
 ]
 
-export const ANALYSTS: SelectableData[] = [
-  { id: 'Aaron Elvir', label: 'Aaron Elvir' },
-  { id: 'Luis Robles', label: 'Luis Robles' },
-  { id: 'Gustavo Aguilar', label: 'Gustavo Aguilar' },
-  { id: 'Francisco Castilo', label: 'Francisco Castilo' },
-  { id: 'David Dávila', label: 'David Dávila' },
-]
+export const ANALYSTS: SelectableData[] = []
