@@ -217,6 +217,16 @@ export const Home = () => {
               Previsualizar
             </Link>
           </div>
+          <div className="flex items-center mb-4">
+            <Link
+              href="/public/Manual de Usuario - Conversor de Formato TimeLog.pdf"
+              target="_blank"
+              className="text-primary font-bold ml-2 underline"
+              underline="hover"
+            >
+              Click para ver el manual de usuario
+            </Link>
+          </div>
           <div className="flex flex-col my-2">
             <TextCustom
               text="Ingrese sus datos para generar el archivo Excel"
