@@ -1,18 +1,18 @@
 import { SelectableData } from '@types'
 
 export const MONTHS: SelectableData[] = [
-  { id: 'Enero', label: 'Enero' },
-  { id: 'Febrero', label: 'Febrero' },
-  { id: 'Marzo', label: 'Marzo' },
-  { id: 'Abril', label: 'Abril' },
-  { id: 'Mayo', label: 'Mayo' },
-  { id: 'Junio', label: 'Junio' },
-  { id: 'Julio', label: 'Julio' },
-  { id: 'Agosto', label: 'Agosto' },
-  { id: 'Septiembre', label: 'Septiembre' },
-  { id: 'Octubre', label: 'Octubre' },
-  { id: 'Noviembre', label: 'Noviembre' },
-  { id: 'Diciembre', label: 'Diciembre' },
+  { id: '1', label: 'Enero' },
+  { id: '2', label: 'Febrero' },
+  { id: '3', label: 'Marzo' },
+  { id: '4', label: 'Abril' },
+  { id: '5', label: 'Mayo' },
+  { id: '6', label: 'Junio' },
+  { id: '7', label: 'Julio' },
+  { id: '8', label: 'Agosto' },
+  { id: '9', label: 'Septiembre' },
+  { id: '10', label: 'Octubre' },
+  { id: '11', label: 'Noviembre' },
+  { id: '12', label: 'Diciembre' },
 ]
 
 export const YEARS: SelectableData[] = [

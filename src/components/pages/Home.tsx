@@ -62,6 +62,34 @@ export const Home = () => {
   })
 
   useEffect(() => {
+    // Get the current date
+    const currentDate = new Date();
+  
+    // Get the current month
+    let currentMonth = currentDate.getMonth() + 1;
+  
+    // Get the current year
+    let currentYear = currentDate.getFullYear();
+
+    // Get the current day of the month
+    const currentDay = currentDate.getDate();
+
+    // If we are in the first 7 days of the month, it will take the previous month by default
+    if (currentDay <= 7) {
+      if (currentMonth === 1) {
+        currentMonth = 12;
+        currentYear = currentYear - 1;
+      } else {
+        currentMonth = currentMonth - 1;
+      }
+    }
+
+    // Set the default values
+    setMonth(currentMonth.toString());
+    setYear(currentYear.toString());
+  }, []);
+
+  useEffect(() => {
     const { success, data } = stGetAnalysts()
     if (success) {
       setAnalysts(data)
