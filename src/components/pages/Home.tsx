@@ -207,7 +207,8 @@ export const Home = () => {
           }
           timelog.push(obj)
         }
-        let fileName = `${month}_${year}_${firstName}_${firstLastName}`
+        const monthName = MONTHS.find(m => m.id ===month)?.label
+        let fileName = `${monthName}_${year}_${firstName}_${firstLastName}`
         exportWorksheet(timelog, fileName)
       }
       reader.readAsBinaryString(file)
